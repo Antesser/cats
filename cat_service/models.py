@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 
 class Cats(models.Model):
     owner = models.ForeignKey(
-        User, related_name="cats", on_delete=models.CASCADE
+        User, on_delete=models.CASCADE
     )
     catName = models.CharField(max_length=15, unique=True)
     catAge = models.IntegerField()

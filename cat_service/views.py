@@ -1,5 +1,7 @@
 from rest_framework import generics
 
+from users.permissions import IsOwnerOrReadOnly
+
 from .models import Cats
 from .serializers import CatsSerializer
 
@@ -9,7 +11,7 @@ from rest_framework import permissions
 class CatsList(generics.ListCreateAPIView):
     serializer_class = CatsSerializer
     permission_classes = [
-        permissions.IsAuthenticated,
+        permissions.IsAuthenticatedOrReadOnly,
     ]
 
     def get_queryset(self):
@@ -20,6 +22,6 @@ class CatsList(generics.ListCreateAPIView):
 class CatsDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = CatsSerializer
     permission_classes = [
-        permissions.IsAuthenticated,
+        permissions.IsAuthenticated, IsOwnerOrReadOnly
     ]
     queryset = Cats.objects.all()

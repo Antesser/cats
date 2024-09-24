@@ -1,11 +1,13 @@
-from django.urls import re_path
+from django.urls import path
+from rest_framework_simplejwt.views import TokenObtainPairView
 
 from . import views
 
 app_name = "users"
 urlpatterns = [
-    re_path("signup", views.signup),
-    re_path("login", views.login),
-    re_path("logout", views.logout),
-    re_path("test_token", views.test_token),
+    path("signup/", views.signup),
+    path("get_token/", TokenObtainPairView.as_view()),
+    # path("login/", views.login),
+    # path("logout/", views.logout),
+    # path("test_token/", views.test_token),
 ]
