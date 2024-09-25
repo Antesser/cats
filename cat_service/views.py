@@ -11,7 +11,7 @@ from rest_framework import permissions
 class CatsList(generics.ListCreateAPIView):
     serializer_class = CatsSerializer
     permission_classes = [
-        permissions.IsAuthenticatedOrReadOnly,
+        permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly
     ]
 
     def get_queryset(self):
